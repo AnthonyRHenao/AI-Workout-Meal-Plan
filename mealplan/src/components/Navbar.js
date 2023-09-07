@@ -47,11 +47,6 @@ function Navbar() {
                             Meal Plans
                         </Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link to= "/signup" className='nav-links' onClick={closeMenu}>
-                            Sign Up
-                        </Link>
-                    </li>
                 </ul>
                 {button && <Button buttonStyle='btn--outline'>Get Started</Button>}
             </div>

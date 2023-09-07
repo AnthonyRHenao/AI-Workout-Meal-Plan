@@ -41,7 +41,7 @@
     list-style: none;
     text-align: center;
     width: 60vw;
-    justify-content: center;
+    justify-content: end;
     margin-right: 2rem;
   }
   
@@ -63,7 +63,14 @@
     transition: all 0.2s ease-out;
   }
   
-  .fa-bars {
+  #icons{
+    color: white;
+  }
+  .fa-check {
+    color: #fff;
+  }
+
+  .fa-xmark{
     color: #fff;
   }
   
@@ -89,14 +96,15 @@
       top: 80px;
       left: -100%;
       opacity: 1;
-      transition: all 0.5s ease;
+      transition: all 1s ease;
+      justify-content: center;
     }
   
     .nav-menu.active {
       background: #242222;
       left: 0;
       opacity: 1;
-      transition: all 1.5s ease;
+      transition: all 1s ease;
       z-index: 1;
     }
   
@@ -130,7 +138,12 @@
       cursor: pointer;
     }
   
-    .fa-times {
+    .fa-check {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .fa-xmark{
       color: #fff;
       font-size: 2rem;
     }
