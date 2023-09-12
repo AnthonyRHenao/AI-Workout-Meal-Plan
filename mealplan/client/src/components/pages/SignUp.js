@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 /*import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';*/
+import dinnerPhoto from '../../images/dinner.jpg';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -37,6 +38,8 @@ export default function SignInSide() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      f_name: data.get('f_name'),
+      l_name: data.get('l_name')
     });
   };
 
@@ -50,7 +53,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundImage: `url(${dinnerPhoto})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -72,13 +75,13 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
                 margin="normal"
                 required
-                halfWidth
+                fullWidth
                 id="f_name"
                 label="First Name"
                 name="f_name"
@@ -88,7 +91,7 @@ export default function SignInSide() {
             <TextField
                 margin="normal"
                 required
-                halfWidth
+                fullWidth
                 id="l_name"
                 label="Last Name"
                 name="l_name"
