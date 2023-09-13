@@ -14,21 +14,15 @@ const productSchema = new Schema({
   image: {
     type: String
   },
-  price: {
-    type: Number,
+  ingredients: {
+    type: String,
     required: true,
-    min: 0.99
-  },
-  quantity: {
-    type: Number,
-    min: 0,
-    default: 0
-  },
-  category: {
+  }
+  /*category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
-  }
+  }*/
 });
 
 const Product = mongoose.model('Product', productSchema);
