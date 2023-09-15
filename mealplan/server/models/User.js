@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const mealPlan = require('./MealPlan')
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const MealPlan = require('./MealPlan');
+
+const { meals, MealPlan, User } = require('./mealId')
 
 const userSchema = new Schema({
   firstName: {
@@ -27,6 +30,10 @@ const userSchema = new Schema({
   },
   mealplan: [MealPlan.schema]
 });
+
+
+
+
 
 // set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {
