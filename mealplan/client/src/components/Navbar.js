@@ -31,7 +31,7 @@ function Navbar() {
         <nav className='navbar'>
             <div className='navbar-container'>
                 <Link to="/" className ="navbar-logo" onClick={closeMenu}>
-                    FETA <i class="fa-solid fa-utensils"></i>
+                    FETA <i className="fa-solid fa-utensils"></i>
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

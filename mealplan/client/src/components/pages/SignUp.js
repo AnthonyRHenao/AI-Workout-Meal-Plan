@@ -3,8 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-/*import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';*/
+import { useState, useEffect } from 'react';
 import dinnerPhoto from '../../images/dinner.jpg';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -13,6 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+
 
 function Copyright(props) {
   return (
@@ -27,22 +30,36 @@ function Copyright(props) {
   );
 }
 
+
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      f_name: data.get('f_name'),
-      l_name: data.get('l_name')
-    });
-  };
 
+    const [formState, setFormState] = useState({ email: '', password: '', firstName: '', lastName: '' });
+    const [addUser] = useMutation(ADD_USER);
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      console.log(formState);
+      
+      const { data } = await addUser({
+        variables: {...formState}
+      });
+
+      Auth.login(data.addUser.token)
+    };
+  
+
+ const handleChange = (event) => {
+      event.preventDefault();
+      const { name, value } = event.target;
+
+      setFormState({
+        ...formState,
+        [name]: value
+      })
+    };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -77,26 +94,30 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
+            <Box component="form" noValidate  sx={{ mt: 1 }} onSubmit={handleFormSubmit}>
+              <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="f_name"
                 label="First Name"
-                name="f_name"
+                name="firstName"
                 autoComplete="f_name"
                 autoFocus
+                value={formState.firstName}
+                onChange={handleChange}
               />
-            <TextField
+              <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="l_name"
                 label="Last Name"
-                name="l_name"
+                name="lastName"
                 autoComplete="l_name"
                 autoFocus
+                value={formState.lastName}
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -107,6 +128,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={formState.email}
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -117,6 +140,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={formState.password}
+                onChange={handleChange}
               />
               {/*<FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -137,11 +162,17 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
+              {/* {error && (
+                <div className="my-3 p-3 bg-danger text-white">
+                  {error.message}
+                </div>
+              )} */}
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
       </Grid>
     </ThemeProvider>
+    // <div>h1</div>
   );
 }

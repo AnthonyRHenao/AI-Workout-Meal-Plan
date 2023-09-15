@@ -8,7 +8,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-        user: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.products',
@@ -22,10 +22,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+  },
 
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
 
       return { token, user };
@@ -37,7 +38,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-  
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -57,8 +58,7 @@ const resolvers = {
     }
   }
 }
-};
-  
+
 
 
 module.exports = resolvers;
