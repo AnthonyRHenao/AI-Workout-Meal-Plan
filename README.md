@@ -1,1 +1,3 @@
-# AI-Workout-Meal-Plan
+Final Project AI-Workout-Meal-Plan
+
+
