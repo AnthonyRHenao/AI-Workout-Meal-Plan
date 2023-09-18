@@ -15,7 +15,7 @@ Embarking on a fitness journey is a path filled with challenges that will test y
 - Polished UI.
 - Stripe payment platform.
 - React.
-- Implimented .JPEG & MP4 Files
+- Implemented .JPEG & MP4 Files
 
 ## WebPage ScreenShot !
 
