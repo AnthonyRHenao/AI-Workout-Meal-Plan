@@ -16,10 +16,15 @@ Embarking on a fitness journey is a path filled with challenges that will test y
 - Stripe payment platform.
 - React.
 - Implemented .JPEG & MP4 Files
+- Heroku
+
 
 ## WebPage ScreenShot !
 
 
 ![image](https://github.com/AnthonyRHenao/AI-Workout-Meal-Plan/assets/128942328/6519f45e-9740-45fe-8666-7834e4db461f)
 
+## Deployed Webpage Link
+
+https://still-bayou-51959-86504dc7c009.herokuapp.com
 
