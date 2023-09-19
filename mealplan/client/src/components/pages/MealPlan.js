@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ListItemButton, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, ListItemButton, Paper, Typography } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import { Grid } from '@mui/material';
 import axios from 'axios';
@@ -15,8 +15,8 @@ function Mealplan() {
       method: 'GET',
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
       params: {
-        tags: 'vegetarian',
-        number: '1'
+        tags: 'breakfast',
+        number: '10'
       },
       headers: {
         'X-RapidAPI-Key': '464f4e24d8msh0f17a2a749ab23ep126989jsnad9e27712e09',
@@ -29,6 +29,7 @@ function Mealplan() {
       const response = await axios.request(options);
       // Set the API response data in the state
       setApiData(response.data);
+      console.log(response.data);
     } catch (error) {
       // Handle errors here
       console.error(error);
@@ -37,21 +38,25 @@ function Mealplan() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={4} sx={{ sm: '122px', xs: '40px', width: 300, alignItems: 'center' }}>
+      <Grid item xs={3} sx={{ sm: '122px', xs: '40px', width: 300, alignItems: 'center' }}>
         <Typography>Here are your Menu Items:</Typography>
         {/* Step 3: Trigger the API call on button click */}
         <ListItemButton component="a" href="#simple-list" onClick={fetchDataFromAPI}>
           <ListItemText primary="Fetch Recipe" />
         </ListItemButton>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={9}>
         {apiData && (
-          <div>
+          <Paper elevation={3} style={{padding:"20px"}} >
             {/* Render the API data here */}
-            <Typography>Title: {apiData.recipes[0].title}</Typography>
-            <Typography>Instructions: {apiData.recipes[0].instructions}</Typography>
+            <Typography variant='h5' component="div" gutterBottom>Title: {apiData.recipes[0].title}</Typography>
+            <Typography variant='body2' color="textSecondary" gutterBottom><b>Instructions:</b> {apiData.recipes[0].instructions}</Typography>
+            <div className='text-center' padding="20px" marginTop="10px">
+            <img thumbnail-padding= '.25rem' src={apiData.recipes[0].image} alt="recipe" className='img-fluid rounded' style={{width:"auto", height:"auto"}} />
+            </div>
+
             {/* Add other data you want to display from the response */}
-          </div>
+          </Paper>
         )}
       </Grid>
     </Grid>
