@@ -15,7 +15,7 @@ function Mealplan() {
       method: 'GET',
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
       params: {
-        tags: 'breakfast,lunch,dinner',
+        tags: 'breakfast',
         number: '10'
       },
       headers: {
@@ -52,7 +52,7 @@ function Mealplan() {
             <Typography variant='h5' component="div" gutterBottom>Title: {apiData.recipes[0].title}</Typography>
             <Typography variant='body2' color="textSecondary" gutterBottom><b>Instructions:</b> {apiData.recipes[0].instructions}</Typography>
             <div className='text-center' padding="20px" marginTop="10px">
-            <img $thumbnail-padding= '.25rem' src={apiData.recipes[0].image} alt="recipe" className='img-fluid rounded' style={{width:"auto", height:"auto"}} />
+            <img thumbnail-padding= '.25rem' src={apiData.recipes[0].image} alt="recipe" className='img-fluid rounded' style={{width:"auto", height:"auto"}} />
             </div>
 
             {/* Add other data you want to display from the response */}
